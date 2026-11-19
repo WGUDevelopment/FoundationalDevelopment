@@ -1,0 +1,773 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foundations of Coaching | Completion</title>
+
+<style>
+:root {
+  --navy-dark: #001731;
+  --navy: #002855;
+  --blue: #0070F0;
+  --sky-blue: #46B1EF;
+  --light-blue: #EEF6F9;
+  --green: #97E142;
+  --white: #FFFFFF;
+  --gray: #F1F1F1;
+  --error: #B3261E;
+  --shadow: 0 8px 24px rgba(0,23,49,.12);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--light-blue);
+  color: var(--navy-dark);
+  line-height: 1.6;
+}
+
+button, input { font: inherit; }
+button { cursor: pointer; }
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--sky-blue);
+  outline-offset: 3px;
+}
+
+.section {
+  padding: 60px 30px;
+}
+
+.inner {
+  width: min(1050px,100%);
+  margin: 0 auto;
+}
+
+/* CONGRATULATIONS HERO */
+
+.hero {
+  background: var(--navy-dark);
+  color: var(--white);
+  text-align: center;
+  padding: 75px 30px 85px;
+  border-bottom: 8px solid var(--green);
+}
+
+.step-label {
+  display: block;
+  color: var(--sky-blue);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  margin-bottom: 20px;
+}
+
+.celebration-icon {
+  width: 94px;
+  height: 94px;
+  background: var(--green);
+  color: var(--navy-dark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 0 auto 30px;
+}
+
+.hero h1 {
+  color: var(--white);
+  font-size: clamp(3rem,7vw,5.5rem);
+  line-height: 1.05;
+  letter-spacing: -.04em;
+  margin: 0 0 22px;
+}
+
+.hero-subtitle {
+  color: var(--green);
+  font-size: clamp(1.3rem,3vw,2rem);
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.12rem;
+}
+
+/* COMPLETION DETAILS */
+
+.section-heading {
+  color: var(--navy);
+  font-size: clamp(2rem,4vw,2.8rem);
+  line-height: 1.15;
+  margin: 0 0 20px;
+}
+
+.intro {
+  font-size: 1.08rem;
+  max-width: 900px;
+}
+
+.accomplishments {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.accomplishment-card {
+  background: var(--white);
+  border-top: 5px solid var(--sky-blue);
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+
+.check {
+  background: var(--green);
+  color: var(--navy-dark);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+}
+
+.accomplishment-card h3 {
+  color: var(--navy);
+  margin: 0 0 12px;
+}
+
+.accomplishment-card p { margin: 0; }
+
+/* COMPETENCY SECTION */
+
+.competency-section {
+  background: var(--white);
+}
+
+.competency-card {
+  background: var(--navy-dark);
+  color: var(--white);
+  border-radius: 18px;
+  padding: 42px;
+  border-bottom: 7px solid var(--green);
+  box-shadow: var(--shadow);
+}
+
+.competency-card h2 {
+  font-size: clamp(2rem,4vw,3rem);
+  color: var(--white);
+  line-height: 1.15;
+  margin: 0 0 18px;
+}
+
+.competency-card > p {
+  font-size: 1.08rem;
+  max-width: 850px;
+}
+
+.skills {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 12px;
+  margin: 28px 0;
+}
+
+.skill {
+  background: rgba(255,255,255,.08);
+  border-left: 4px solid var(--sky-blue);
+  padding: 14px 18px;
+  border-radius: 7px;
+  font-weight: 700;
+}
+
+/* REQUEST BUTTON */
+
+.request-area {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 14px;
+  padding: 28px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.request-area h3 {
+  font-size: 1.45rem;
+  color: var(--green);
+  margin: 0 0 12px;
+}
+
+.request-area p {
+  max-width: 700px;
+  margin: 0 auto 20px;
+}
+
+.request-button {
+  background: var(--green);
+  color: var(--navy-dark);
+  border: 0;
+  border-radius: 10px;
+  padding: 17px 32px;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.request-button:hover:not(:disabled) {
+  background: #B4F36C;
+}
+
+.request-button:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+#feedback-status {
+  min-height: 24px;
+  margin-top: 18px;
+  font-weight: 700;
+  color: var(--green);
+}
+
+/* FINAL MESSAGE */
+
+.final-message {
+  text-align: center;
+  padding: 45px 25px 65px;
+}
+
+.final-message h2 {
+  color: var(--navy);
+  font-size: 2rem;
+}
+
+.final-message p {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* REQUEST MODAL */
+
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,23,49,.82);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-backdrop.visible { display: flex; }
+
+.modal {
+  width: min(550px,100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--white);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+
+.modal h2 {
+  color: var(--navy);
+  margin: 0 0 14px;
+}
+
+.modal label {
+  display: block;
+  color: var(--navy);
+  font-weight: 700;
+  margin: 20px 0 8px;
+}
+
+.modal input {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #B8CDDC;
+  border-radius: 9px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.secondary-button,
+.primary-button {
+  border: 0;
+  border-radius: 9px;
+  padding: 13px 22px;
+  font-weight: 700;
+}
+
+.secondary-button {
+  background: var(--gray);
+  color: var(--navy);
+}
+
+.primary-button {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.primary-button:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.error {
+  color: var(--error);
+  font-weight: 700;
+}
+
+@media(max-width:800px) {
+  .section { padding: 40px 20px; }
+
+  .accomplishments,
+  .skills {
+    grid-template-columns: 1fr;
+  }
+
+  .competency-card {
+    padding: 28px;
+  }
+}
+
+@media(max-width:520px) {
+  .hero { padding: 55px 20px; }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- CONGRATULATIONS -->
+
+<header class="hero">
+  <div class="inner">
+
+    <span class="step-label">
+      Step Four · Learning Path Completion
+    </span>
+
+    <div class="celebration-icon" aria-hidden="true">
+      &#10003;
+    </div>
+
+    <h1>Congratulations!</h1>
+
+    <div class="hero-subtitle">
+      You've Completed Your Learning Path!
+    </div>
+
+    <p>
+      You've completed all three learning activities
+      in the Foundations of Coaching learning path!
+      Throughout this experience, you've explored
+      essential coaching skills, practiced making
+      intentional coaching decisions, and reflected
+      on your own coaching interactions.
+    </p>
+
+  </div>
+</header>
+
+<!-- ACCOMPLISHMENTS -->
+
+<section class="section">
+  <div class="inner">
+
+    <h2 class="section-heading">
+      Look at What You've Accomplished
+    </h2>
+
+    <p class="intro">
+      Each activity was designed to help you build
+      the skills needed to facilitate meaningful
+      conversations that empower students to take
+      ownership of their learning.
+    </p>
+
+    <div class="accomplishments">
+
+      <article class="accomplishment-card">
+        <div class="check" aria-hidden="true">&#10003;</div>
+
+        <h3>Workshop</h3>
+
+        <p>
+          You explored four foundational coaching skills
+          through collaborative discussion, critical
+          thinking, and real student scenarios.
+        </p>
+      </article>
+
+      <article class="accomplishment-card">
+        <div class="check" aria-hidden="true">&#10003;</div>
+
+        <h3>Simulation</h3>
+
+        <p>
+          You practiced making coaching decisions,
+          explored how different responses impact
+          student interactions, and received feedback
+          on your choices.
+        </p>
+      </article>
+
+      <article class="accomplishment-card">
+        <div class="check" aria-hidden="true">&#10003;</div>
+
+        <h3>Self-Evaluation</h3>
+
+        <p>
+          You reviewed your own coaching, recognized
+          strengths, identified opportunities for growth,
+          and reflected on how to strengthen your
+          future interactions.
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- COMPETENCY REVIEW -->
+
+<section class="section competency-section">
+  <div class="inner">
+
+    <div class="competency-card">
+
+      <h2>
+        One Final Step: Confirm Your Competency
+      </h2>
+
+      <p>
+        You've completed the learning activities,
+        and now it's time to put those skills
+        into practice!
+      </p>
+
+      <p>
+        To confirm competency in the foundational
+        coaching skills, a member of the development
+        team will review one of your student
+        appointments or live events and provide
+        personalized feedback on your coaching.
+      </p>
+
+      <p>
+        The review will focus on the same four
+        coaching skills you've been developing
+        throughout this learning path:
+      </p>
+
+      <div class="skills">
+        <div class="skill">Active Listening</div>
+        <div class="skill">Powerful Questions</div>
+        <div class="skill">
+          Encouragement &amp; Meaningful Feedback
+        </div>
+        <div class="skill">Goal-Setting</div>
+      </div>
+
+      <div class="request-area">
+
+        <h3>Ready to Request Your Feedback?</h3>
+
+        <p>
+          Click the button below to notify the
+          development team that you've completed
+          the learning activities and are ready
+          for your competency review.
+        </p>
+
+        <button
+          id="request-feedback-button"
+          class="request-button"
+          type="button">
+          Request Competency Feedback
+        </button>
+
+        <p id="feedback-status"
+          role="status"
+          aria-live="polite"></p>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- FINAL MESSAGE -->
+
+<section class="final-message">
+  <div class="inner">
+
+    <h2>Your Development Doesn't Stop Here!</h2>
+
+    <p>
+      The skills you've explored throughout this
+      learning path are skills you'll continue
+      strengthening with every student interaction.
+      Keep asking thoughtful questions, listening
+      with intention, recognizing student progress,
+      and helping students identify meaningful
+      next steps.
+    </p>
+
+  </div>
+</section>
+
+<!-- FEEDBACK REQUEST POPUP -->
+
+<div id="feedback-modal"
+  class="modal-backdrop"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-title">
+
+  <div class="modal">
+
+    <h2 id="modal-title">
+      Request Competency Feedback
+    </h2>
+
+    <p>
+      Enter your first and last name to notify
+      the development team that you've completed
+      the Foundations of Coaching learning path
+      and are ready for a competency review.
+    </p>
+
+    <form id="feedback-form">
+
+      <label for="coach-name">
+        First and Last Name
+      </label>
+
+      <input id="coach-name"
+        type="text"
+        autocomplete="name"
+        required>
+
+      <p id="form-error"
+        class="error"
+        role="alert"
+        aria-live="polite"></p>
+
+      <div class="modal-actions">
+        <button class="secondary-button"
+          type="button"
+          id="cancel-request">
+          Cancel
+        </button>
+
+        <button class="primary-button"
+          type="submit"
+          id="submit-request">
+          Send Feedback Request
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+<script>
+"use strict";
+
+/*
+===================================================
+COMPETENCY FEEDBACK NOTIFICATION ENDPOINT
+
+Replace the empty string with the URL of your
+Cloudflare Worker for competency feedback requests.
+
+This must be a Worker that accepts POST requests
+and forwards the notification to your Teams workflow.
+
+Do not use the recording request Worker unless
+you've configured it to handle feedback requests.
+===================================================
+*/
+
+const FEEDBACK_REQUEST_ENDPOINT = "";
+
+const $ = id => document.getElementById(id);
+
+const feedbackButton = $("request-feedback-button");
+const modal = $("feedback-modal");
+const form = $("feedback-form");
+const nameInput = $("coach-name");
+const formError = $("form-error");
+const status = $("feedback-status");
+const submitButton = $("submit-request");
+const cancelButton = $("cancel-request");
+
+let previousFocus = null;
+
+function openModal() {
+  previousFocus = document.activeElement;
+
+  formError.textContent = "";
+
+  try {
+    nameInput.value =
+      localStorage.getItem("foundations_coach_name") || "";
+  } catch(e) {
+    nameInput.value = "";
+  }
+
+  modal.classList.add("visible");
+  document.body.style.overflow = "hidden";
+  nameInput.focus();
+}
+
+function closeModal() {
+  modal.classList.remove("visible");
+  document.body.style.overflow = "";
+
+  if (previousFocus && previousFocus.focus) {
+    previousFocus.focus();
+  }
+}
+
+feedbackButton.addEventListener("click", openModal);
+cancelButton.addEventListener("click", closeModal);
+
+modal.addEventListener("click", e => {
+  if (e.target === modal) closeModal();
+});
+
+document.addEventListener("keydown", e => {
+  if (!modal.classList.contains("visible")) return;
+
+  if (e.key === "Escape") {
+    closeModal();
+    return;
+  }
+
+  if (e.key !== "Tab") return;
+
+  const focusable = Array.from(
+    modal.querySelectorAll(
+      "input:not(:disabled), button:not(:disabled)"
+    )
+  );
+
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+
+  if (e.shiftKey &&
+      document.activeElement === first) {
+    e.preventDefault();
+    last.focus();
+  } else if (!e.shiftKey &&
+             document.activeElement === last) {
+    e.preventDefault();
+    first.focus();
+  }
+});
+
+/* SEND COMPETENCY FEEDBACK REQUEST */
+
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+
+  const name = nameInput.value.trim();
+
+  if (name.split(/\s+/).length < 2) {
+    formError.textContent =
+      "Please enter your first and last name.";
+    nameInput.focus();
+    return;
+  }
+
+  if (!FEEDBACK_REQUEST_ENDPOINT) {
+    formError.textContent =
+      "Feedback requests are not connected yet. " +
+      "Please contact the development team.";
+    return;
+  }
+
+  const payload = {
+    name: name,
+    learningPath: "Foundations of Coaching",
+    activity: "Competency Feedback Request"
+  };
+
+  submitButton.disabled = true;
+  submitButton.textContent = "Sending...";
+  formError.textContent = "";
+
+  try {
+    const response = await fetch(
+      FEEDBACK_REQUEST_ENDPOINT,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("HTTP " + response.status);
+    }
+
+    try {
+      localStorage.setItem(
+        "foundations_coach_name", name
+      );
+    } catch(e) {}
+
+    closeModal();
+
+    status.textContent =
+      "Your competency feedback request has " +
+      "been sent to the development team!";
+
+  } catch(error) {
+    console.error(error);
+
+    formError.textContent =
+      "Your feedback request could not be sent. " +
+      "Please try again or contact the development team.";
+
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = "Send Feedback Request";
+  }
+});
+</script>
+
+</body>
+</html>
